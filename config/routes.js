@@ -11,6 +11,8 @@ module.exports = require('lib/wiring/routes')
 .resources('examples')
 
 .get('/entries', 'entries#index')
+.get('/entries/:id', 'entries#show')
+.post('/entries', 'entries#create')
 
 // users of the app have special requirements
 .post('/sign-up', 'users#signup')
