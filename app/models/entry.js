@@ -2,6 +2,8 @@
 
 const mongoose = require('mongoose');
 
+// let testDate = (new Date()).toISOString();
+
 const entrySchema = new mongoose.Schema({
 
   goal: {
@@ -16,7 +18,7 @@ const entrySchema = new mongoose.Schema({
   },
 
   finishBy: {
-    type: Date,
+    type: String, //change this to Date with _ _ _ _- _ _- _ _  format virtual might be needed here 
     required: false,
   },
 
