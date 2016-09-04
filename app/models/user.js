@@ -5,10 +5,14 @@ const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 
 const userSchema = new mongoose.Schema({
-  email: {
+  username: {
     type: String,
     unique: true,
     required: true,
+  },
+  entries: {
+    type: Array,
+    required: false,
   },
   token: {
     type: String,

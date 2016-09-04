@@ -48,7 +48,7 @@ const makeErrorHandler = (res, next) =>
 
 const signup = (req, res, next) => {
   let credentials = req.body.credentials;
-  let user = { email: credentials.email, password: credentials.password };
+  let user = { username: credentials.username, password: credentials.password };
   getToken().then(token =>
     user.token = token
   ).then(() =>
@@ -64,7 +64,7 @@ const signup = (req, res, next) => {
 
 const signin = (req, res, next) => {
   let credentials = req.body.credentials;
-  let search = { email: credentials.email };
+  let search = { username: credentials.username };
   User.findOne(search
   ).then(user =>
     user ? user.comparePassword(credentials.password) :

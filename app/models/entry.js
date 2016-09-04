@@ -18,8 +18,13 @@ const entrySchema = new mongoose.Schema({
   },
 
   finishBy: {
-    type: String, //change this to Date with _ _ _ _- _ _- _ _  format virtual might be needed here 
+    type: String, //change this to Date with _ _ _ _- _ _- _ _  format virtual might be needed here
     required: false,
+  },
+
+  completed: {
+    type: Boolean,
+    default: false,
   },
 
   location: {
