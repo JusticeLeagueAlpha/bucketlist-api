@@ -209,7 +209,7 @@ HTTP/1.1 200 OK
       "finishBy": "YYYY-MM-DD",
       "location": "location example",
       "url": "example url",
-      "_owner": "hexidecimal id",
+      "_owner": "hexadecimal id",
       "__v": 0,
       "completed": Boolean
     },
@@ -241,6 +241,59 @@ curl --include --request GET http://localhost:3000/entries/$ID \
 Response:
 
 ```sh
+HTTP/1.1 200 OK
+{
+  "entry":{
+    "_id":"hexadecimal id",
+    "updatedAt":"2016-09-04T04:22:10.107Z",
+    "createdAt":"2016-09-04T04:22:10.107Z",
+    "goal":"example goal",
+    "description":"example description",
+    "finishBy":"YYYY-MM-DD",
+    "location":"example location",
+    "_owner":"hexadecimal id",
+    "__v":0,
+    "completed": Boolean
+  }
+}
+```
+
+#### POST /entries
+
+Request:
+
+```sh
+curl --include --request POST http://localhost:3000/entries \
+  --header "Content-Type: application/json" \
+    --header "Authorization: Token token=$TOKEN" \
+  --data '{
+    "entry": {
+      "goal": "example goal",
+      "description": "example description",
+      "finishBy": "YYYY-DD-MM",
+      "location": "example location"
+    }
+  }'
+```
+
+Response:
+
+```sh
+HTTP/1.1 200 OK
+{
+  "entry":{
+    "__v":0,
+    "updatedAt":"2016-09-04T04:22:10.107Z",
+    "createdAt":"2016-09-04T04:22:10.107Z",
+    "goal":"example goal",
+    "description":"example description",
+    "finishBy":"YYYY-DD-MM",
+    "location":"example location",
+    "_owner":"hexadecimal id",
+    "_id":"hexadecimal id",
+    "completed":false
+  }
+}
 ```
 
 ## [License](LICENSE)
