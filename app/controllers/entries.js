@@ -12,6 +12,12 @@ const index = (req, res, next) => {
     .catch(err => next(err));
 };
 
+const indexUserEntries = (req, res, next) => {
+  Entry.find({ _owner: req.currentUser._id })
+    .then(entries => res.json({ entries }))
+    .catch(err => next(err));
+};
+
 const show = (req, res, next) => {
   Entry.findById(req.params.id)
     .then(entry => entry ? res.json({ entry }) : next())
@@ -58,6 +64,7 @@ const destroy = (req, res, next) => {
 
 module.exports = controller({
   index,
+  indexUserEntries,
   show,
   create,
   update,

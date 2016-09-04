@@ -11,6 +11,7 @@ module.exports = require('lib/wiring/routes')
 .resources('examples')
 
 .get('/entries', 'entries#index')
+.get('/user-entries', 'entries#indexUserEntries')
 .get('/entries/:id', 'entries#show')
 .post('/entries', 'entries#create')
 .patch('/entries/:id', 'entries#update')
