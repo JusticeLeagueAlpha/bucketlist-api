@@ -16,7 +16,8 @@ An API to allow user interaction with bucketlist app. Gives clients abilities to
 | GET | `/entries/:id` | `entries#show` |
 | POST | `/entries` | `entries#create` |
 | PATCH | `/entries/:id` | `entries#update` |
-| DELETE | `entries/:id` | `entries#destroy` |
+| DELETE | `/entries/:id` | `entries#destroy` |
+| GET | `/user-entries` | `entries#indexUserEntries` |
 
 #### GET /users
 
@@ -29,19 +30,21 @@ curl --include --request GET http://localhost:3000/users \
 
 Response:
 
-```md
+```sh
 HTTP/1.1 200 OK
 Content-Type: application/json; charset=utf-8
 
 {
 "users": [
 {
-"id": 2,
-"email": "another@example.email"
+"_id": "hexadecimal id",
+"email": "another@example.email",
+"entries": []
 },
 {
-"id": 1,
-"email": "an@example.email"
+"_id": "hexadecimal id",
+"email": "an@example.email",
+"entries": []
 }
 ]
 }
@@ -56,20 +59,15 @@ curl --include --request GET http://localhost:3000/users/$ID \
 --header "Authorization: Token token=$TOKEN"
 ```
 
-```sh
-ID=2 TOKEN=33ad6372f795694b333ec5f329ebeaaa scripts/user.sh
-```
-
 Response:
 
-```md
+```sh
 HTTP/1.1 200 OK
-Content-Type: application/json; charset=utf-8
-
 {
 "user": {
-"id": 2,
-"email": "another@example.email"
+"_id": "hexadecimal id",
+"email": "another@example.email",
+"entries": []
 }
 }
 ```
@@ -95,14 +93,16 @@ scripts/sign-up.sh
 
 Response:
 
-```md
+```sh
 HTTP/1.1 201 Created
-Content-Type: application/json; charset=utf-8
-
 {
-  "user": {
-    "id": 1,
-    "email": "an@example.email"
+  "user":{
+    "__v":0,
+    "updatedAt":"2016-09-04T23:52:43.797Z",
+    "createdAt":"2016-09-04T23:52:43.797Z",
+    "email":"an@example.email",
+    "_id":"hexadecimal id",
+    "entries":[]
   }
 }
 ```
@@ -122,16 +122,10 @@ curl --include --request POST http://localhost:3000/sign-in \
   }'
 ```
 
-```sh
-scripts/sign-in.sh
-```
-
 Response:
 
-```md
+```sh
 HTTP/1.1 200 OK
-Content-Type: application/json; charset=utf-8
-
 {
   "user": {
     "id": 1,
@@ -157,13 +151,9 @@ curl --include --request PATCH http://localhost:3000/change-password/$ID \
   }'
 ```
 
-```sh
-ID=1 TOKEN=33ad6372f795694b333ec5f329ebeaaa scripts/change-password.sh
-```
-
 Response:
 
-```md
+```sh
 HTTP/1.1 204 No Content
 ```
 
@@ -176,13 +166,9 @@ curl --include --request DELETE http://localhost:3000/sign-out/$ID \
   --header "Authorization: Token token=$TOKEN"
 ```
 
-```sh
-ID=1 TOKEN=33ad6372f795694b333ec5f329ebeaaa scripts/sign-out.sh
-```
-
 Response:
 
-```md
+```sh
 HTTP/1.1 204 No Content
 ```
 
@@ -294,6 +280,18 @@ HTTP/1.1 200 OK
     "completed":false
   }
 }
+```
+
+#### PATCH /entries/:id
+
+Request:
+
+```sh
+```
+
+Response:
+
+```sh
 ```
 
 ## [License](LICENSE)
