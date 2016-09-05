@@ -25,8 +25,7 @@ const create = (req, res, next) => {
   s3Upload(req.file)
     .then((s3Response) =>
       Upload.create({
-        url: s3Response.Location,
-        title: req.body.image.title
+        url: s3Response.Location
       }))
     .then((upload) => res.json({ upload }))
     .catch(err => next(err));
