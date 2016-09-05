@@ -8,7 +8,7 @@ const mime = require('mime');
 
 let file =  {
   path: process.argv[2],
-  title: process.argv[3],
+  title: process.argv[3]
 };
 
 file.mimetype = mime.lookup(file.path);
