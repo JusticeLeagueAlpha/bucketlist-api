@@ -7,8 +7,7 @@ const Upload = require('../app/models/upload');
 const mime = require('mime');
 
 let file =  {
-  path: process.argv[2],
-  title: process.argv[3]
+  path: process.argv[2]
 };
 
 file.mimetype = mime.lookup(file.path);
