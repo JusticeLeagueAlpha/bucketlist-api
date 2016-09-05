@@ -10,6 +10,8 @@ module.exports = require('lib/wiring/routes')
 // standards RESTful routes
 .resources('examples')
 
+.get('/uploads', 'uploads#index')
+
 .get('/entries', 'entries#index')
 .get('/user-entries', 'entries#indexUserEntries')
 .get('/entries/:id', 'entries#show')
