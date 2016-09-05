@@ -1,3 +1,7 @@
+## Front End Repo
+
+https://github.com/JusticeLeagueAlpha/bucketlist-project
+
 ## API
 
 An API to allow user interaction with bucketlist app. Gives clients abilities to register as users of the API, create entries for their bucketlist, and see other user entries. Scripts are included in [`scripts`](scripts) to test controller actions.
@@ -287,11 +291,105 @@ HTTP/1.1 200 OK
 Request:
 
 ```sh
+curl --include --request PATCH http://localhost:3000/entries/$ID \
+--header "Authorization: Token token=$TOKEN" \
+  --header "Content-Type: application/json" \
+  --data '{
+    "entry": {
+      "completed": true
+    }
+  }'
 ```
 
 Response:
 
 ```sh
+HTTP/1.1 200 OK
+{
+  "entry":{
+    "__v":0,
+    "updatedAt":"2016-09-04T04:22:10.107Z",
+    "createdAt":"2016-09-04T04:22:10.107Z",
+    "goal":"example goal",
+    "description":"example description",
+    "finishBy":"YYYY-DD-MM",
+    "location":"example location",
+    "_owner":"hexadecimal id",
+    "_id":"hexadecimal id",
+    "completed": true
+  }
+}
+```
+
+#### DELETE /entries/:id
+
+Request:
+
+```sh
+curl --include --request DELETE http://localhost:3000/entries/$ID \
+  --header "Authorization: Token token=$TOKEN"
+```
+
+Response:
+
+```sh
+HTTP/1.1 204 No Content
+```
+
+#### GET /user-entries
+
+Request:
+
+```sh
+curl --request GET http://localhost:3000/user-entries \
+  --header "Authorization: Token token=$TOKEN"
+```
+
+Response:
+
+```sh
+HTTP/1.1 200 OK
+{
+  "entries":
+  [
+    {
+      "_id":"hexadecimal id",
+      "updatedAt":"2016-09-04T04:22:10.107Z",
+      "createdAt":"2016-09-04T04:22:10.107Z",
+      "goal":"example goal 1",
+      "description":"example description 1",
+      "finishBy":"YYYY-MM-DD",
+      "location":"example location 1",
+      "_owner":"matching hexadecimal id",
+      "__v":0,
+      "completed":false
+    },
+    {
+      "_id":"hexadecimal id",
+      "updatedAt":"2016-09-04T04:23:04.911Z",
+      "createdAt":"2016-09-04T04:23:04.911Z",
+      "goal":"example goal 2",
+      "description":"example description 2",
+      "finishBy":"YYYY-MM-DD",
+      "location":"example location 2",
+      "_owner":"matching hexadecimal id",
+      "__v":0,
+      "completed":false
+    },
+    {
+      "_id":"hexadecimal id",
+      "updatedAt":"2016-09-04T04:23:53.548Z",
+      "createdAt":"2016-09-04T04:23:53.548Z",
+      "goal":"example goal 3",
+      "description":"example description 3",
+      "finishBy":"YYYY-MM-DD",
+      "location":"example location 3",
+      "_owner":"matching hexadecimal id",
+      "__v":0,
+      "completed":false
+    }
+  ]
+}
 ```
 
 ## [License](LICENSE)
