@@ -75,5 +75,4 @@ module.exports = controller({
   destroy,
 }, { before: [
   { method: multerUpload.single('image[file]'), only: ['create'] },
-  // { method: authenticate, except: ['index', 'show'] },
 ], });
