@@ -10,7 +10,7 @@ const cors = require('cors');
 const loader = require('lib/wiring/loader');
 
 const corsOptions = {
-  origin: process.env.CLIENT_ORIGIN || 'https://justiceleaguealpha.github.io/bucketlist-project/',
+  origin: process.env.CLIENT_ORIGIN || 'https://justiceleaguealpha.github.io',
 };
 
 const before = (app) => {
