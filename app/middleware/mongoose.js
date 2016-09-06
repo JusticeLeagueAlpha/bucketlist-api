@@ -1,7 +1,7 @@
 'use strict';
 
 const mongoose = require('mongoose');
-const uri = process.env.MONGOLAB_URI || 'mongodb://localhost/bucketlist-api';
+const uri = process.env.MONGOLAB_URI || 'mongodb://localhost/bubble-bucket-api';
 mongoose.Promise = global.Promise;
 mongoose.connect(uri);
 
