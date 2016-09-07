@@ -33,6 +33,21 @@ const create = (req, res, next) => {
     .catch(err => next(err));
 };
 
+const entriesCompleted = (req, res, next) => {
+  let search = {completed: true, _owner: req.currentUser._id};
+  Entry.findOne(search)
+  .then(entry => {
+    if(!entry) {
+      return next();
+    }
+
+    delete req.body._owner;
+    return entry.entriesCompleted(req.body.entry)
+    .then(() => res.sendStatus(200));
+  })
+  .catch(err => next(err));
+};
+
 const update = (req, res, next) => {
   let search = { _id: req.params.id, _owner: req.currentUser._id };
   Entry.findOne(search)
@@ -69,6 +84,7 @@ module.exports = controller({
   create,
   update,
   destroy,
+  entriesCompleted
 }, { before: [
   { method: authenticate, except: ['index', 'show'] },
 ], });
