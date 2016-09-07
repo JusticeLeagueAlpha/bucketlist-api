@@ -14,6 +14,7 @@ module.exports = require('lib/wiring/routes')
 .post('/uploads', 'uploads#create')
 
 .get('/completed-entries', 'entries#indexCompleted')
+.get('/user-completed', 'entries#indexUserCompleted')
 .get('/entries', 'entries#index')
 .get('/user-entries', 'entries#indexUserEntries')
 .get('/entries/:id', 'entries#show')

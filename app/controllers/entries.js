@@ -24,6 +24,13 @@ const show = (req, res, next) => {
     .catch(err => next(err));
 };
 
+const indexCompleted = (res, req, next) => {
+  let search = { completed:true};
+  Entry.find(search)
+  .then(entry => entry ? res.json({ entry}) :next())
+  .catch(err => next(err));
+};
+
 const create = (req, res, next) => {
   let entry = Object.assign(req.body.entry, {
     _owner: req.currentUser._id,
@@ -33,7 +40,7 @@ const create = (req, res, next) => {
     .catch(err => next(err));
 };
 
-const entriesCompleted = (req, res, next) => {
+const indexUserCompleted = (req, res, next) => {
   let search = {completed: true, _owner: req.currentUser._id};
   Entry.findOne(search)
   .then(entry => {
@@ -84,7 +91,8 @@ module.exports = controller({
   create,
   update,
   destroy,
-  entriesCompleted
+  indexCompleted,
+  indexUserCompleted
 }, { before: [
   { method: authenticate, except: ['index', 'show'] },
 ], });
