@@ -23,11 +23,6 @@ const indexUserCompleted = (req, res, next) => {
     .then(entries => res.json({ entries }))
     .catch(err => next(err));
 };
-// const indexUserCompleted = (req, res, next) => {
-//   Entry.find({ _owner: req.currentUser._id, completed: true })
-//     .then(entries => res.json({ entries }))
-//     .catch(err => next(err));
-// };
 
 const show = (req, res, next) => {
   Entry.findById(req.params.id)
@@ -51,20 +46,6 @@ const create = (req, res, next) => {
     .catch(err => next(err));
 };
 
-// const indexUserCompleted = (req, res, next) => {
-//   let search = {completed: true, _owner: req.currentUser._id};
-//   Entry.findOne(search)
-//   .then(entry => {
-//     if(!entry) {
-//       return next();
-//     }
-//
-//     delete req.body._owner;
-//     return entry.entriesCompleted(req.body.entry)
-//     .then(() => res.sendStatus(200));
-//   })
-//   .catch(err => next(err));
-// };
 
 const update = (req, res, next) => {
   let search = { _id: req.params.id, _owner: req.currentUser._id };
@@ -102,7 +83,6 @@ module.exports = controller({
   create,
   update,
   destroy,
-  // showCompleted,
   indexCompleted,
   indexUserCompleted,
 }, { before: [
