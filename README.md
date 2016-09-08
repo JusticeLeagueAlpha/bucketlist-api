@@ -2,8 +2,6 @@
 
 https://github.com/JusticeLeagueAlpha/bucketlist-project
 
-
-
 ## Wireframes
 
 http://h81gb8.axshare.com/#g=1&p=landing_page
