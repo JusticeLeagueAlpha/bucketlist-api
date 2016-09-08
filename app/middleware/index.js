@@ -11,6 +11,7 @@ const loader = require('lib/wiring/loader');
 
 const corsOptions = {
   origin: process.env.CLIENT_ORIGIN || 'https://justiceleaguealpha.github.io',
+    // origin: process.env.CLIENT_ORIGIN || 'http://localhost:8080',
 };
 
 const before = (app) => {
